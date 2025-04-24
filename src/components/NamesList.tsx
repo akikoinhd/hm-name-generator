@@ -4,7 +4,7 @@ import { BandName as BN } from "../App"
 
 type NamesListProps = {
     names: BN[];
-}
+};
 
 export default function NamesList({names}: NamesListProps) {
     return(
@@ -19,5 +19,5 @@ export default function NamesList({names}: NamesListProps) {
            ))}
         </ul>
         </>
-    )
-}
+    );
+};

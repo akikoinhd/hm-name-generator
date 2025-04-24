@@ -9,4 +9,4 @@ export default function Header({image, children} : HeaderProps) {
             {children}
         </header>
     )
-}
+};
