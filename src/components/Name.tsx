@@ -12,4 +12,4 @@ export default function Name({title, children}: NameProps){
             <p>{children}</p>
         </div>
     </article>
-}
+};

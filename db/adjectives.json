@@ -1,0 +1,50 @@
+{
+  "death": [
+    "bloody",
+    "rotten",
+    "rotting",
+    "decaying",
+    "festering",
+    "dead",
+    "gaping",
+    "dying",
+    "gnawing",
+    "red",
+    "horrendous",
+    "infected",
+    "bloated",
+    "engorged"
+  ],
+  "black": [
+    "black",
+    "possessed",
+    "weeping",
+    "night",
+    "haunting",
+    "haunted",
+    "spectral",
+    "ghostly",
+    "demonic",
+    "bleeding",
+    "seething",
+    "abyssal",
+    "hell",
+    "the"
+  ],
+  "doom": [
+    "bloody",
+    "void",
+    "green",
+    "magic",
+    "dragon",
+    "acid",
+    "colossal",
+    "giant",
+    "witch",
+    "eternal",
+    "legend of the",
+    "secret",
+    "dark",
+    "the"
+  ]
+}
