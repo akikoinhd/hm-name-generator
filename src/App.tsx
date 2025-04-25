@@ -49,21 +49,7 @@ function App() {
           };
           return [...prevNames, newName]
         });
-      };
-
-      // let randAdj: string = genAdjs1[Math.floor(Math.random() * genAdjs1.length)];
-      // let randNoun: string = genNouns1[Math.floor(Math.random() * genNouns1.length)];
-      
-      // for (let i = 0; i < 10; i += 1) {
-      //   randAdj = genAdjs1[Math.floor(Math.random() * genAdjs1.length)];
-      //   randNoun = genNouns1[Math.floor(Math.random() * genNouns1.length)];
-      //   setGenAdjs([...genAdjs, randAdj]);
-      //   setGenNouns([...genNouns, randNoun]);
-      //   console.log(genAdjs);
-      //   console.log(genNouns);
-      // };
-    
-
+      }; 
     } catch (e) {
       console.error("An error occurred:", e);
     };
