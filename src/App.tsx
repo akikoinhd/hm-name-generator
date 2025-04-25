@@ -2,11 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import headerImg from './assets/header.png'
-
-export type BandName = {
-  title: string;
-  id: number;
-}
+import GenreSelect from './components/GenreSelect';
+import NamesList from './components/NamesList';
 
 const genres: string[] = [
   "heavy",
@@ -18,29 +15,41 @@ const genres: string[] = [
   "gothic"
 ];
 
+export type BandName = {
+  adj: string;
+  noun: string;
+  id: number;
+}
+
 function App() {
   const [count, setCount] = useState(0);
   const [rGenre, setRGenre] = useState("");
+  const [names, setNames] = useState<BandName[]>([]);
 
-  async function handleClick() {
+  async function handleGenerate(userGenre: string) {
+    if (userGenre === "none") return;
+
     try {
-      setCount((count) => count + 1);
-      setRGenre(() => genres[Math.floor(Math.random() * genres.length)]);
+      await setCount((count) => count + 1);
+      await setRGenre(() => genres[Math.floor(Math.random() * genres.length)]);
 
-
-      // fetch test
-      const hellodata: Response = await fetch('/api/hello');
-      const hello: string = await hellodata.text();
-      console.log(hello);
-
-      // fetch
-      // will receive array of band names in json, just send them to the NamesList component
-      const data: Response = await fetch('/api/generate');
-      console.log(typeof data);
-      const json = await data.json();
-      console.log(typeof json);
-
-
+      const response: Response = await fetch('api/generate');
+      const json = await response.json();
+      const adjData = await JSON.parse(json.adjectives);
+      const genAdjs = adjData[userGenre];
+      const nounData = await JSON.parse(json.nouns);
+      const genNouns = nounData[userGenre];
+      
+      for (let i = 0; i < 10; i += 1) {
+        setNames(prevNames => {
+          const newName: BandName = {
+            id: Math.random(),
+            adj: genAdjs[Math.floor(Math.random() * genAdjs.length)],
+            noun: genNouns[Math.floor(Math.random() * genNouns.length)]
+          };
+          return [...prevNames, newName]
+        });
+      }; 
     } catch (e) {
       console.error("An error occurred:", e);
     };
@@ -50,20 +59,16 @@ function App() {
   return (
     <>
       <Header image={{src: headerImg, alt: 'Metal Band Name Generator'}}>
-      <h1>For uncreative metalheads</h1>
+        <h1>For uncreative metalheads</h1>
       </Header>
-      {/* <GenreSelect onGenreSelect={handleClick} count={count} /> */}
-      <div className="card">
-          <button onClick={handleClick}>
-          {count > 0 ? "TRY AGAIN" : "GENERATE"}
-          </button>
-      </div>
+      <GenreSelect onGenreSubmit={handleGenerate}/>
       <div>
         {count >= 2 &&
           <div>
             {count.toString()} clicks?  Seriously?  You're trying too hard.  Go listen to some {rGenre} metal and try again later.
           </div>}
       </div>
+      <NamesList names={names}/>
     </>
   )
 };

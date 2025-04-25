@@ -10,9 +10,7 @@ app.get('/api/hello', (req: Request, res: Response) => {
 });
 
 app.get('/api/generate', NameController.getAdjectives, NameController.getNouns, (req: Request, res: Response) => {
-  console.log("router")
-  console.log("res.locals" + res.locals);
-  res.status(200).send(res.locals);
+  res.status(200).json(res.locals);
 });
 
 app.listen(port, () => {
