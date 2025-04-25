@@ -1,22 +1,17 @@
 import fs from 'fs';
 import { NextFunction, Request, Response } from 'express';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 
-// const mainController = {};
-
-// mainController.generate = (req, res, next) => {
-//     try {
-//         const adjData = fs.readFileSync('../../db/adjectives.json');
-//         res.locals.adj = adjData;
-//         return next();
-//     }
-// };
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 class NameController {
     async getAdjectives(req: Request, res: Response, next: NextFunction) {
         try {
-            const adjData = await fs.readFileSync('../../db/adjectives.json');
+            const adjData = await fs.readFileSync(path.join(__dirname, '../../db/adjectives.json'));
             console.log('adj middleware')
-            console.log(typeof(adjData));
+            console.log(adjData);
             res.locals.adjectives = adjData;
             return next();
         } catch (e) {

@@ -27,17 +27,18 @@ function App() {
       setCount((count) => count + 1);
       setRGenre(() => genres[Math.floor(Math.random() * genres.length)]);
 
-      const hellodata = await fetch('/api/hello');
-      const hello = await hellodata.text();
+
+      // fetch test
+      const hellodata: Response = await fetch('/api/hello');
+      const hello: string = await hellodata.text();
       console.log(hello);
 
       // fetch
       // will receive array of band names in json, just send them to the NamesList component
-      // console.log('clicked')
-      // const data = await fetch('/api/generate');
-      // console.log(data);
-      // const json = await data.json();
-      // console.log(typeof json);
+      const data: Response = await fetch('/api/generate');
+      console.log(typeof data);
+      const json = await data.json();
+      console.log(typeof json);
 
 
     } catch (e) {
