@@ -1,23 +1,23 @@
-import { FormEvent, useRef } from "react";
+// import { FormEvent, useRef } from "react";
 
 
-type GenreSelectProps = {
-    onGenreSelect: (userGenre: string) => void;
-    count: number;
-};
+// type GenreSelectProps = {
+//     onGenreSelect: (userGenre: string) => void;
+//     count: number;
+// };
 
-export default function GenreSelect({ onGenreSelect }: GenreSelectProps) {
-    const genre = useRef<HTMLInputElement>(null);
+// export default function GenreSelect({ onGenreSelect }: GenreSelectProps) {
+//     const genre = useRef<HTMLInputElement>(null);
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-    }
+//     function handleSubmit(event: FormEvent<HTMLFormElement>) {
+//         event.preventDefault();
+//     }
 
-    return(
-        <div className="card">
-            <button onClick={handleClick}>
-            {count > 0 ? "TRY AGAIN" : "GENERATE"}
-            </button>
-        </div>
-    )
-};
+//     return(
+//         <div className="card">
+//             <button onClick={}>
+//             {count > 0 ? "TRY AGAIN" : "GENERATE"}
+//             </button>
+//         </div>
+//     )
+// };

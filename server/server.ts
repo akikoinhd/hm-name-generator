@@ -1,20 +1,12 @@
-import express from "express";
-import ViteExpress from "vite-express";
-import NameController from "./controllers/nameController";
+    // server/server.ts
+    import express, { Request, Response } from 'express';
+    const app = express();
+    const port = 5000;
 
-const app = express();
+    app.get('/api/hello', (req: Request, res: Response) => {
+      res.send('Hello from Express!');
+    });
 
-app.get("/hello", (_, res) => {
-    console.log('hello')
-    res.send("Hello from Express!");
-});
-
-app.get('/generate', NameController.getAdjectives, NameController.getNouns, (req, res) => {
-    window.console.log("router")
-    console.log("res.locals" + res.locals);
-    res.status(200).send(res.locals);
-});
-
-ViteExpress.listen(app, 3000, () =>
-  console.log("Server is listening on port 3000...")
-);
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
