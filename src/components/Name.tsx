@@ -2,13 +2,15 @@ import { PropsWithChildren } from "react";
 
 type NameProps = PropsWithChildren<{
     id: number;
-    title: string;
+    adj: string;
+    noun: string;
 }>;
 
-export default function Name({title, children}: NameProps){
+export default function Name({adj, noun, children}: NameProps){
+
     return <article>
         <div>
-            <h2>{title}</h2>
+            <h2>{`${adj} ${noun}`}</h2>
             <p>{children}</p>
         </div>
     </article>

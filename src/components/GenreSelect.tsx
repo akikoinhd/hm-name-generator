@@ -1,23 +1,32 @@
-// import { FormEvent, useRef } from "react";
+import { FormEvent, useRef } from "react";
 
 
-// type GenreSelectProps = {
-//     onGenreSelect: (userGenre: string) => void;
-//     count: number;
-// };
+type GenreSelectProps = {
+    onGenreSubmit: (userGenre: string) => void;
+};
 
-// export default function GenreSelect({ onGenreSelect }: GenreSelectProps) {
-//     const genre = useRef<HTMLInputElement>(null);
+export default function GenreSelect({ onGenreSubmit }: GenreSelectProps) {
+    const genre = useRef<HTMLSelectElement>(null);
 
-//     function handleSubmit(event: FormEvent<HTMLFormElement>) {
-//         event.preventDefault();
-//     }
+    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const selectedGenre = genre.current!.value;
+        console.log(selectedGenre);
+        event.currentTarget.reset();
+        onGenreSubmit(selectedGenre);
+    }
 
-//     return(
-//         <div className="card">
-//             <button onClick={}>
-//             {count > 0 ? "TRY AGAIN" : "GENERATE"}
-//             </button>
-//         </div>
-//     )
-// };
+    return(
+        <form onSubmit={handleSubmit}>
+            <select ref={genre}>
+                <option value="none">Select a subgenre...</option>
+                <option value="death">Death Metal</option>
+                <option value="black">Black Metal</option>
+                <option value="doom">Doom Metal</option>
+            </select>
+            <div>
+                <button>GENERATE</button>
+            </div>
+        </form>
+    )
+};
