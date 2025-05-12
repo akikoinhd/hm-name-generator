@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import './App.css'
-import Header from './components/Header'
-import headerImg from './assets/header.png'
+import { useState } from 'react';
+import './App.css';
+import Header from './components/Header';
+import headerImg from './assets/header.png';
 import GenreSelect from './components/GenreSelect';
 import NamesList from './components/NamesList';
 
@@ -19,7 +19,7 @@ export type BandName = {
   adj: string;
   noun: string;
   id: number;
-}
+};
 
 
 function App() {
@@ -37,15 +37,15 @@ function App() {
 
       const response: Response = await fetch(`api/${userGenre}`);
       const json: { adjectives: string; nouns: string } = await response.json();
-      const adjData: string = json.adjectives;
-      const nounData: string = json.nouns;
+      const adjData: string[] = json.adjectives.toString().split(',').sort(() => Math.random() - 0.5);
+      const nounData: string[] = json.nouns.toString().split(',').sort(() => Math.random() - 0.5);
       
       for (let i = 0; i < 6; i += 1) {
         setNames(prevNames => {
           const newName: BandName = {
             id: Math.random(),
-            adj: adjData[Math.floor(Math.random() * adjData.length)],
-            noun: nounData[Math.floor(Math.random() * nounData.length)]
+            adj: adjData[i],
+            noun: nounData[i]
           };
           return [...prevNames, newName]
         });
