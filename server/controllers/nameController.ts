@@ -9,10 +9,12 @@ const __dirname = dirname(__filename);
 class NameController {
     async getAdjectives(req: Request, res: Response, next: NextFunction) {
         try {
-            const adjData = await fs.readFileSync(
+            const genre: string = req.params.genre;
+            const response: string = await fs.readFileSync(
                 path.join(__dirname, '../../db/adjectives.json'),
                 'utf-8');
-            res.locals.adjectives = adjData;
+            const adjData = JSON.parse(response);
+            res.locals.adjectives = adjData[genre];
             return next();
         } catch (e) {
             return next('Error getting adjectives: ' + e);
@@ -21,10 +23,12 @@ class NameController {
 
     async getNouns(req: Request, res: Response, next: NextFunction) {
         try {
-            const nounData = await fs.readFileSync(
+            const genre: string = req.params.genre;
+            const response: string = await fs.readFileSync(
                 path.join(__dirname, '../../db/nouns.json'),
                 'utf-8');
-            res.locals.nouns = nounData;
+                const nounData = JSON.parse(response);
+            res.locals.nouns = nounData[genre];
             return next();
         } catch (e) {
             return next('Error getting nouns: ' + e);

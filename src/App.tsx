@@ -21,31 +21,39 @@ export type BandName = {
   id: number;
 }
 
+// this won't work!
+// type GeneratedGenres = {
+//   death: string[];
+//   black: string[];
+//   doom: string[];
+// }
+
+
+
 function App() {
-  const [count, setCount] = useState(0);
-  const [rGenre, setRGenre] = useState("");
+  const [count, setCount] = useState<number>(0);
+  const [rGenre, setRGenre] = useState<string>("");
   const [names, setNames] = useState<BandName[]>([]);
 
   async function handleGenerate(userGenre: string) {
     if (userGenre === "none") return;
 
     try {
-      await setCount((count) => count + 1);
-      await setRGenre(() => genres[Math.floor(Math.random() * genres.length)]);
+      setNames([]);
+      setCount((count) => count + 1);
+      setRGenre(() => genres[Math.floor(Math.random() * genres.length)]);
 
-      const response: Response = await fetch('api/generate');
-      const json = await response.json();
-      const adjData = await JSON.parse(json.adjectives);
-      const genAdjs = adjData[userGenre];
-      const nounData = await JSON.parse(json.nouns);
-      const genNouns = nounData[userGenre];
+      const response: Response = await fetch(`api/${userGenre}`);
+      const json: { adjectives: string; nouns: string } = await response.json();
+      const adjData: string = json.adjectives;
+      const nounData: string = json.nouns;
       
       for (let i = 0; i < 10; i += 1) {
         setNames(prevNames => {
           const newName: BandName = {
             id: Math.random(),
-            adj: genAdjs[Math.floor(Math.random() * genAdjs.length)],
-            noun: genNouns[Math.floor(Math.random() * genNouns.length)]
+            adj: adjData[Math.floor(Math.random() * adjData.length)],
+            noun: nounData[Math.floor(Math.random() * nounData.length)]
           };
           return [...prevNames, newName]
         });
@@ -63,7 +71,7 @@ function App() {
       </Header>
       <GenreSelect onGenreSubmit={handleGenerate}/>
       <div>
-        {count >= 2 &&
+        {count >= 5 &&
           <div>
             {count.toString()} clicks?  Seriously?  You're trying too hard.  Go listen to some {rGenre} metal and try again later.
           </div>}
