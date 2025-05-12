@@ -9,7 +9,7 @@ app.get('/api/hello', (req: Request, res: Response) => {
   res.send('Hello from Express!');
 });
 
-app.get('/api/generate', NameController.getAdjectives, NameController.getNouns, (req: Request, res: Response) => {
+app.get('/api/:genre', NameController.getAdjectives, NameController.getNouns, (req: Request, res: Response) => {
   res.status(200).json(res.locals);
 });
 
