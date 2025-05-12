@@ -11,8 +11,6 @@ export default function GenreSelect({ onGenreSubmit }: GenreSelectProps) {
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const selectedGenre = genre.current!.value;
-        console.log(selectedGenre);
-        event.currentTarget.reset();
         onGenreSubmit(selectedGenre);
     }
 

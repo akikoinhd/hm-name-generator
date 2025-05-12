@@ -21,14 +21,6 @@ export type BandName = {
   id: number;
 }
 
-// this won't work!
-// type GeneratedGenres = {
-//   death: string[];
-//   black: string[];
-//   doom: string[];
-// }
-
-
 
 function App() {
   const [count, setCount] = useState<number>(0);
@@ -48,7 +40,7 @@ function App() {
       const adjData: string = json.adjectives;
       const nounData: string = json.nouns;
       
-      for (let i = 0; i < 10; i += 1) {
+      for (let i = 0; i < 6; i += 1) {
         setNames(prevNames => {
           const newName: BandName = {
             id: Math.random(),
