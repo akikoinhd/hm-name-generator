@@ -1,5 +1,5 @@
-# Heavy Metal Band Name Generator
+<img src="./src/assets/MetalizerHeader.png">
 
-You don't need an app to tell you what to name your band, but it's good for a laugh.
+You really don't need an app to tell you what to name your band.
 
 Built with React, Typescript, Tailwind CSS, and Vite <3
