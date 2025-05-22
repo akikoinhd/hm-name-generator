@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import headerImg from './assets/header.png';
+import headerImg from './assets/MetalizerHeader.png';
 import GenreSelect from './components/GenreSelect';
 import NamesList from './components/NamesList';
 
@@ -57,19 +57,19 @@ function App() {
   };
 
   return (
-    <>
+    <div className="bg-neutral-950 w-screen h-screen">
       <Header image={{src: headerImg, alt: 'Metal Band Name Generator'}}>
-        <h1>For uncreative metalheads</h1>
+        <h1 className="text-neutral-500 text-xs">Created by @akikoinhd</h1>
       </Header>
       <GenreSelect onGenreSubmit={handleGenerate}/>
-      <div>
+      <div className="flex items-center justify-center p-4">
         {count >= 5 &&
-          <div>
+          <div className="text-red-700 text-md">
             {count.toString()} clicks?  Seriously?  You're trying too hard.  Go listen to some {rGenre} metal and try again later.
           </div>}
       </div>
       <NamesList names={names}/>
-    </>
+    </div>
   )
 };
 
