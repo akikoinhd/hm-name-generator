@@ -16,14 +16,14 @@ export default function GenreSelect({ onGenreSubmit }: GenreSelectProps) {
 
     return(
         <form onSubmit={handleSubmit}>
-            <select ref={genre}>
+            <select ref={genre} >
                 <option value="none">Select a subgenre...</option>
                 <option value="death">Death Metal</option>
                 <option value="black">Black Metal</option>
                 <option value="doom">Doom Metal</option>
             </select>
             <div>
-                <button>GENERATE</button>
+                <button className="bg-blue-500 text-red rounded-full px-2 py-1.5 font-sans text-sm/6 font-medium shadow-none">GENERATE</button>
             </div>
         </form>
     )
